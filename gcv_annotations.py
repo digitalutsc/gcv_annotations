@@ -57,7 +57,8 @@ def main():
                         # add a space between words if break detected
                         if "property" in symbol and symbol["property"]["detectedBreak"]["type"] == "SPACE":
                             content += " "
-                            
+                
+                # bind to any free port
                 sock = socket.socket()
                 sock.bind(('', 0))
 
@@ -68,7 +69,7 @@ def main():
                 resources["@context"] = "http://iiif.io/api/presentation/2/context.json"
                 resources["on"] = CANVAS + "#xywh=" + str(x0) + "," + str(y0) + "," + str(width) + "," + str(height)
                 resources["label"] = content
-
+                
                 res = {}
                 res["@type"] = "dctypes:Text"
                 res["http://dev.llgc.org.uk/sas/full_text"] = content
@@ -76,16 +77,13 @@ def main():
                 res["chars"] = "<p>" + content + "</p>"
 
                 resources["resource"] = res
-
-                motivation_object = []
-                motivation_object.append("oa:commenting")
-
-                resources["motivation"] = motivation_object
+                resources["motivation"] = ["oa:commenting"]
 
                 resources_list.append(resources)
 
     out_json["resources"] = resources_list
 
+    # store extracted data in the output file
     try:
         with open(OUTPUT_PATH, 'w') as out_file:
             json.dump(out_json, out_file)
