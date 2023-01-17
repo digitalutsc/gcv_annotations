@@ -9,7 +9,7 @@
 python3 input.json output.json https://example.org/canvas/11
 ```
 
-```input.json``` an OCR json obtained from Google Vision API
+```input.json``` an OCR json response obtained from Google Vision API
 
 ```output.json``` the output path
 
