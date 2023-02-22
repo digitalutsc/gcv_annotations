@@ -6,7 +6,7 @@
 ### To run the code
 
 ```bash
-python3 input.json output.json https://example.org/canvas/11
+python3 gcv_annotations.py input.json output.json https://example.org/canvas/11
 ```
 
 ```input.json``` an OCR json response obtained from Google Vision API
